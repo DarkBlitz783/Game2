@@ -17,7 +17,7 @@ namespace Game2
         Rectangle playerRect;
 
         bool isJumping = false;
-
+        //test
 
         //Added for animation
 
