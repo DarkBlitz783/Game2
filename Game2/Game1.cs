@@ -75,7 +75,6 @@ namespace Game2
         int jumpHeight;
         int gravSpeed;
         int enemyspeed;
-        Rectangle [] platforms;
 
         //states
         Texture2D startText;
@@ -146,7 +145,6 @@ namespace Game2
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             blockRect = new Rectangle(300, 200, 50, 50);
-            platforms = new Rectangle[10];
 
             platform = new Rectangle(000, 540, 1200, 350);
             base.Initialize();
@@ -469,8 +467,5 @@ namespace Game2
                 enemyText = enemy1;
             }
         }
-  
     }
-
-   
 }
