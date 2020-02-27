@@ -17,10 +17,8 @@ namespace Game2
         Rectangle playerRect;
 
         bool isJumping = false;
-        //test big
 
         //Added for animation
-
         Rectangle animateRect;
         int animateCount = 0;
         int animateSpeed = 10;
@@ -62,16 +60,13 @@ namespace Game2
         Texture2D enemy1;
         Texture2D enemy2;
 
-
         //platform stuff
         Texture2D floorText;
         Rectangle floorRect;
         Rectangle platform;
 
-
         Texture2D blockText;
         Rectangle blockRect;
-        //test
 
         //variables
         int state = 0;
@@ -89,6 +84,7 @@ namespace Game2
         Texture2D loseText;
         Rectangle loseRect;
 
+        //Keyboard thing
         KeyboardState kb;
         KeyboardState oldKB;
 
@@ -116,18 +112,14 @@ namespace Game2
             startRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             winRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             loseRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
-
-
+            
             //player stuff 
-
             playerRect = new Rectangle(0, 440, 100, 100);
 
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
             animateNumPics = 3;
             animateCount = 0;
-
 
             //enemy stuff 
             chef1Rect = new Rectangle(25, 200, 50, 75);
@@ -144,20 +136,15 @@ namespace Game2
             gravSpeed = 4;
             enemyspeed = 3;
 
-
             //enemy 2 stuff
             enemyRect = new Rectangle(600, 200, 100, 100);
             animateenemyCount = 0;
             animateenemySpeed = 20;
             animateenemyNumPics = 3;
 
-
-
-
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             blockRect = new Rectangle(300, 200, 50, 50);
-
 
             platform = new Rectangle(000, 540, 1200, 350);
             base.Initialize();
@@ -172,13 +159,14 @@ namespace Game2
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            test = Content.Load<SpriteFont>("File2");
+            
             //state stuff
             startText = Content.Load<Texture2D>("Meme5");
             winText = Content.Load<Texture2D>("Meme4");
             loseText = Content.Load<Texture2D>("house-house");
 
             //player stuff
-
             player1 = Content.Load<Texture2D>("pizzasteve1");
             player2 = Content.Load<Texture2D>("pizzasteve2");
             player3 = Content.Load<Texture2D>("pizzasteve3");
@@ -192,7 +180,6 @@ namespace Game2
 
             playerText = player1;
 
-
             //enemy stuff 
             chef1 = Content.Load<Texture2D>("chef1");
             chef1a = Content.Load<Texture2D>("fchef1");
@@ -204,9 +191,6 @@ namespace Game2
             enemy2 = Content.Load<Texture2D>("fchef2");
 
             enemyText = enemy1;
-
-            test = Content.Load<SpriteFont>("File2");
-
 
             //platform stuff
             floorText = Content.Load<Texture2D>("Floor");
@@ -360,12 +344,10 @@ namespace Game2
             {
                 playerText = player4;
             }
-
             else
             {
                 animateCount = 0;
             }
-
         }
         private void Lanimatecode()
         {
@@ -416,7 +398,6 @@ namespace Game2
             {
                 speed *= -1;
                 chef1Text = chef1;
-
             }
         }
         private void checkLives()
@@ -486,8 +467,5 @@ namespace Game2
                 enemyText = enemy1;
             }
         }
-
-        //test
-
     }
 }
