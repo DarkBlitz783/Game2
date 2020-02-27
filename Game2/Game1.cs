@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Game2
 {
@@ -76,6 +77,8 @@ namespace Game2
         int gravSpeed;
         int enemyspeed;
 
+        Rectangle[] blocks;
+
         //states
         Texture2D startText;
         Rectangle startRect;
@@ -147,6 +150,10 @@ namespace Game2
             blockRect = new Rectangle(300, 200, 50, 50);
 
             platform = new Rectangle(000, 540, 1200, 350);
+
+            blocks = new Rectangle[10];
+            makeWalls();
+
             base.Initialize();
         }
 
@@ -262,7 +269,7 @@ namespace Game2
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(blockText, blockRect, Color.White);
-
+                spriteBatch.Draw(blockText, blocks[], Color.White);
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
@@ -438,14 +445,14 @@ namespace Game2
         }
         private void fall()
         {
-            playerRect.Y += speedJ;
+            playerRect.Y += gravSpeed;
         }
         private void jump()
         {
             if (jumpHeight > 0)
             {
-                jumpHeight -= speedJ;
-                playerRect.Y -= speedJ;
+                jumpHeight -= gravSpeed;
+                playerRect.Y -= gravSpeed;
                 isJumping = true;
             }
             else
@@ -466,6 +473,11 @@ namespace Game2
                 enemyspeed *= -1;
                 enemyText = enemy1;
             }
+        }
+        private void makeWalls()
+        {
+            blocks[0] = new Rectangle(0, 0, 50, 50);
+            blocks[1] = new Rectangle(50, 50, 50, 50);
         }
     }
 }
