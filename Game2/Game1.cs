@@ -269,7 +269,16 @@ namespace Game2
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(blockText, blockRect, Color.White);
-                spriteBatch.Draw(blockText, blocks[], Color.White);
+                spriteBatch.Draw(blockText, blocks[0], Color.White);
+                spriteBatch.Draw(blockText, blocks[1], Color.White);
+                spriteBatch.Draw(blockText, blocks[2], Color.White);
+                spriteBatch.Draw(blockText, blocks[3], Color.White);
+                spriteBatch.Draw(blockText, blocks[4], Color.White);
+                spriteBatch.Draw(blockText, blocks[5], Color.White);
+                spriteBatch.Draw(blockText, blocks[6], Color.White);
+                spriteBatch.Draw(blockText, blocks[7], Color.White);
+                spriteBatch.Draw(blockText, blocks[8], Color.White);
+                spriteBatch.Draw(blockText, blocks[9], Color.White);
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
@@ -478,6 +487,14 @@ namespace Game2
         {
             blocks[0] = new Rectangle(0, 0, 50, 50);
             blocks[1] = new Rectangle(50, 50, 50, 50);
+            blocks[2] = new Rectangle(150, 50, 50, 50);
+            blocks[3] = new Rectangle(250, 50, 50, 50);
+            blocks[4] = new Rectangle(350, 50, 50, 50);
+            blocks[5] = new Rectangle(450, 50, 50, 50);
+            blocks[6] = new Rectangle(550, 50, 50, 50);
+            blocks[7] = new Rectangle(650, 50, 50, 50);
+            blocks[8] = new Rectangle(750, 50, 50, 50);
+            blocks[9] = new Rectangle(50, 250, 50, 50);
         }
     }
 }
