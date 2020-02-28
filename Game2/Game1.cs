@@ -72,7 +72,9 @@ namespace Game2
         //variables
         int state = 0;
         int lives;
-        int speed, speedJ;
+        int speed;
+        int speedJ;
+        int maxHeight;
         int jumpHeight;
         int gravSpeed;
         int enemyspeed;
@@ -135,7 +137,8 @@ namespace Game2
             speedJ = 3;
             lives = 3;
             state = 1;
-            jumpHeight = 100;
+            maxHeight = 100;
+            jumpHeight = maxHeight;
             gravSpeed = 4;
             enemyspeed = 3;
 
@@ -269,6 +272,7 @@ namespace Game2
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(blockText, blockRect, Color.White);
+                //walls
                 spriteBatch.Draw(blockText, blocks[0], Color.White);
                 spriteBatch.Draw(blockText, blocks[1], Color.White);
                 spriteBatch.Draw(blockText, blocks[2], Color.White);
@@ -279,15 +283,15 @@ namespace Game2
                 spriteBatch.Draw(blockText, blocks[7], Color.White);
                 spriteBatch.Draw(blockText, blocks[8], Color.White);
                 spriteBatch.Draw(blockText, blocks[9], Color.White);
+
+                //end walls
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
-                spriteBatch.Draw(playerText, animateRect, Color.White);
             }
             if (state == 3)
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(playerText, playerRect, Color.White);
-                spriteBatch.Draw(playerText, animateRect, Color.White);
                 spriteBatch.Draw(enemyText, enemyRect, Color.White);
             }
             if (state == 4)
@@ -299,7 +303,7 @@ namespace Game2
                 spriteBatch.Draw(loseText, loseRect, Color.White);
             }
 
-            spriteBatch.DrawString(test, "" + jumpHeight + " " + state, new Vector2(50, 50), Color.Red);
+            spriteBatch.DrawString(test, "" + jumpHeight + " " + state + " " + isJumping, new Vector2(50, 50), Color.Red);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -425,6 +429,7 @@ namespace Game2
         }
         private void updatePlatform()
         {
+            kb = Keyboard.GetState();
             if (onFloor() && kb.IsKeyDown(Keys.Space))
             {
                 isJumping = true;
@@ -443,20 +448,21 @@ namespace Game2
         {
             Rectangle testfloor = new Rectangle(playerRect.X + 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
 
+            
             if (testfloor.Intersects(platform))
             {
                 isJumping = false;
-                jumpHeight = 100;
+                jumpHeight = maxHeight;
                 playerRect.Y = platform.Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(block[]))
-            {
-                isJumping = false;
-                jumpHeight = 100;
-                playerRect.Y = platform.Y - playerRect.Height;
-                return true;
-            }
+            //if (testfloor.Intersects(platform))
+            //{
+            //    isJumping = false;
+            //    jumpHeight = maxHeight;
+            //    playerRect.Y = platform.Y - playerRect.Height;
+            //    return true;
+            //}
             return false;
         }
         private void fall()
