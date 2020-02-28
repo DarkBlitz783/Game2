@@ -500,8 +500,8 @@ namespace Game2
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
-                playerRect.X = blocks[0].X - playerRect.Height;
+                playerRect.Y = blocks[0].Y - playerRect.Height - 50;
+                playerRect.X = blocks[0].X - 50;
                 return true;
             }
             if (testfloor.Intersects(blocks[1]))
