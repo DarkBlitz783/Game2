@@ -150,8 +150,6 @@ namespace Game2
 
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
-            blockRect = new Rectangle(300, 200, 50, 50);
-
             platform = new Rectangle(000, 540, 1200, 350);
 
             blocks = new Rectangle[10];
@@ -246,10 +244,12 @@ namespace Game2
             if (state == 3)
             {
                 checkKeys();
+                enemymovement();
                 checkCollisions();
                 checkLives();
                 updatePlatform();
-                enemymovement();
+                updateWalls();
+                
             }
 
             base.Update(gameTime);
@@ -271,7 +271,6 @@ namespace Game2
             if (state == 2)
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
-                spriteBatch.Draw(blockText, blockRect, Color.White);
                 //walls
                 spriteBatch.Draw(blockText, blocks[0], Color.White);
                 spriteBatch.Draw(blockText, blocks[1], Color.White);
@@ -403,6 +402,11 @@ namespace Game2
             {
                 playerRect.Location = new Point(0, 0);
                 lives -= 1;
+            }
+            if (playerRect.X > 1200)
+            {
+                playerRect.Location = new Point(500, 500);
+                state = 3;
             }
         }
         private void chef1movement()
