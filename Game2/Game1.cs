@@ -450,6 +450,13 @@ namespace Game2
                 playerRect.Y = platform.Y - playerRect.Height;
                 return true;
             }
+            if (testfloor.Intersects(block[]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = platform.Y - playerRect.Height;
+                return true;
+            }
             return false;
         }
         private void fall()
