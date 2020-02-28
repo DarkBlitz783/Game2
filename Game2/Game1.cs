@@ -155,7 +155,6 @@ namespace Game2
             platform = new Rectangle(000, 540, 1200, 350);
 
             blocks = new Rectangle[10];
-            makeWalls();
 
             base.Initialize();
         }
@@ -236,6 +235,7 @@ namespace Game2
             }
             if (state == 2)
             {
+                makeWalls1();
                 checkKeys();
                 chef1movement();
                 checkCollisions();
@@ -246,7 +246,6 @@ namespace Game2
             if (state == 3)
             {
                 checkKeys();
-                //chef1movement();
                 checkCollisions();
                 checkLives();
                 updatePlatform();
@@ -499,7 +498,7 @@ namespace Game2
                 enemyText = enemy1;
             }
         }
-        private void makeWalls()
+        private void makeWalls1()
         {
             blocks[0] = new Rectangle(50, 450, 50, 50);
             blocks[1] = new Rectangle(100, 450, 50, 50);
@@ -604,6 +603,10 @@ namespace Game2
             {
                 jump();
             }
+        }
+        private void makeWalls2()
+        {
+
         }
     }
 }
