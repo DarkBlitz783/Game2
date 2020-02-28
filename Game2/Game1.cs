@@ -241,6 +241,7 @@ namespace Game2
                 checkCollisions();
                 checkLives();
                 updatePlatform();
+                onWalls();
             }
             if (state == 3)
             {
@@ -456,7 +457,7 @@ namespace Game2
                 playerRect.Y = platform.Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[0-9]))
+            if (testfloor.Intersects(blocks[0]))
             {
                 isJumping = false;
                 jumpHeight = 100;
@@ -464,6 +465,8 @@ namespace Game2
                 return true;
             }
             return false;
+            
+         
         }
         private void fall()
         {
@@ -498,16 +501,92 @@ namespace Game2
         }
         private void makeWalls()
         {
-            blocks[0] = new Rectangle(500, 350, 50, 50);
-            blocks[1] = new Rectangle(50, 50, 50, 50);
-            blocks[2] = new Rectangle(150, 50, 50, 50);
-            blocks[3] = new Rectangle(250, 50, 50, 50);
-            blocks[4] = new Rectangle(350, 50, 50, 50);
-            blocks[5] = new Rectangle(450, 50, 50, 50);
-            blocks[6] = new Rectangle(550, 50, 50, 50);
-            blocks[7] = new Rectangle(650, 50, 50, 50);
-            blocks[8] = new Rectangle(750, 50, 50, 50);
-            blocks[9] = new Rectangle(50, 250, 50, 50);
+            blocks[0] = new Rectangle(50, 450, 50, 50);
+            blocks[1] = new Rectangle(100, 450, 50, 50);
+            blocks[2] = new Rectangle(150, 450, 50, 50);
+            blocks[3] = new Rectangle(200, 450, 50, 50);
+            blocks[4] = new Rectangle(250, 450, 50, 50);
+            blocks[5] = new Rectangle(300, 450, 50, 50);
+            blocks[6] = new Rectangle(350, 450, 50, 50);
+            blocks[7] = new Rectangle(400, 450, 50, 50);
+            blocks[8] = new Rectangle(450, 450, 50, 50);
+            blocks[9] = new Rectangle(500, 450, 50, 50);
+        }
+        private bool onWalls()
+        {
+            Rectangle testfloor = new Rectangle(playerRect.X + 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
+
+            if (testfloor.Intersects(blocks[0]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[1]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[2]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[3]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[4]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[5]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[6]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[7]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[8]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            if (testfloor.Intersects(blocks[9]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
+            return false;
         }
     }
 }
