@@ -241,7 +241,7 @@ namespace Game2
                 checkCollisions();
                 checkLives();
                 updatePlatform();
-                onWalls();
+                updateWalls();
             }
             if (state == 3)
             {
@@ -587,6 +587,23 @@ namespace Game2
                 return true;
             }
             return false;
+        }
+        private void updateWalls()
+        {
+            kb = Keyboard.GetState();
+            if (onWalls() && kb.IsKeyDown(Keys.Space))
+            {
+                isJumping = true;
+                jump();
+            }
+            if (!onWalls() && isJumping == false)
+            {
+                fall();
+            }
+            if (!onWalls() && isJumping == true)
+            {
+                jump();
+            }
         }
     }
 }
