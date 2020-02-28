@@ -119,7 +119,7 @@ namespace Game2
             loseRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             
             //player stuff 
-            playerRect = new Rectangle(0, 440, 100, 100);
+            playerRect = new Rectangle(0, 440, 50, 50);
 
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
@@ -127,7 +127,7 @@ namespace Game2
             animateCount = 0;
 
             //enemy stuff 
-            chef1Rect = new Rectangle(25, 200, 50, 75);
+            chef1Rect = new Rectangle(25, 2000, 50, 75);
             animateChef1Count = 0;
             animateChef1Speed = 20;
             animateChef1NumPics = 3;
@@ -511,69 +511,70 @@ namespace Game2
                 isJumping = false;
                 jumpHeight = 100;
                 playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.X = blocks[0].X - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[1]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[1].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[2]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[2].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[3]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[3].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[4]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[4].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[5]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[5].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[6]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[6].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[7]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[7].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[8]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[8].Y - playerRect.Height;
                 return true;
             }
             if (testfloor.Intersects(blocks[9]))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
+                playerRect.Y = blocks[9].Y - playerRect.Height;
                 return true;
             }
             return false;
@@ -597,10 +598,10 @@ namespace Game2
         }
         private void makeWalls1()
         {
-            blocks[0] = new Rectangle(50, 450, 50, 50);
-            blocks[1] = new Rectangle(100, 450, 50, 50);
-            blocks[2] = new Rectangle(150, 450, 50, 50);
-            blocks[3] = new Rectangle(200, 450, 50, 50);
+            blocks[0] = new Rectangle(250, 500, 50, 50);
+            blocks[1] = new Rectangle(250, 450, 50, 50);
+            blocks[2] = new Rectangle(350, 375, 50, 50);
+            blocks[3] = new Rectangle(450, 325, 50, 50);
             blocks[4] = new Rectangle(250, 450, 50, 50);
             blocks[5] = new Rectangle(300, 450, 50, 50);
             blocks[6] = new Rectangle(350, 450, 50, 50);
