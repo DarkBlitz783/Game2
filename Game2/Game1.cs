@@ -303,7 +303,7 @@ namespace Game2
                 spriteBatch.Draw(loseText, loseRect, Color.White);
             }
 
-            spriteBatch.DrawString(test, "" + jumpHeight + " " + state + " " + isJumping, new Vector2(50, 50), Color.Red);
+            spriteBatch.DrawString(test, "" + jumpHeight + " " + state + " " + onWalls(), new Vector2(50, 50), Color.Red);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -324,14 +324,6 @@ namespace Game2
                 Ranimatecode();
             }
 
-        }
-        private void checkCollisions()
-        {
-            if (playerRect.Intersects(chef1Rect))
-            {
-                playerRect.Location = new Point(0, 0);
-                lives -= 1;
-            }
         }
         private void Ranimatecode()
         {
@@ -405,6 +397,14 @@ namespace Game2
                 animateCount = 0;
             }
         }
+        private void checkCollisions()
+        {
+            if (playerRect.Intersects(chef1Rect))
+            {
+                playerRect.Location = new Point(0, 0);
+                lives -= 1;
+            }
+        }
         private void chef1movement()
         {
             chef1Rect.X += speed;
@@ -418,6 +418,20 @@ namespace Game2
             {
                 speed *= -1;
                 chef1Text = chef1;
+            }
+        }
+        private void enemymovement()
+        {
+            enemyRect.X += enemyspeed;
+            if (enemyRect.X > 700)
+            {
+                enemyspeed *= -1;
+                enemyText = enemy2;
+            }
+            if (enemyRect.X < 0)
+            {
+                enemyspeed *= -1;
+                enemyText = enemy1;
             }
         }
         private void checkLives()
@@ -444,6 +458,23 @@ namespace Game2
                 jump();
             }
         }
+        private void updateWalls()
+        {
+            kb = Keyboard.GetState();
+            if (onWalls() && kb.IsKeyDown(Keys.Space))
+            {
+                isJumping = true;
+                jump();
+            }
+            if (!onWalls() && isJumping == false)
+            {
+                fall();
+            }
+            if (!onWalls() && isJumping == true)
+            {
+                jump();
+            }
+        }
         private bool onFloor()
         {
             Rectangle testfloor = new Rectangle(playerRect.X + 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
@@ -466,50 +497,6 @@ namespace Game2
             return false;
             
          
-        }
-        private void fall()
-        {
-            playerRect.Y += gravSpeed;
-        }
-        private void jump()
-        {
-            if (jumpHeight > 0)
-            {
-                jumpHeight -= gravSpeed;
-                playerRect.Y -= gravSpeed;
-                isJumping = true;
-            }
-            else
-            {
-                isJumping = false;
-            }
-        }
-        private void enemymovement()
-        {
-            enemyRect.X += enemyspeed;
-            if (enemyRect.X > 700)
-            {
-                enemyspeed *= -1;
-                enemyText = enemy2;
-            }
-            if (enemyRect.X < 0)
-            {
-                enemyspeed *= -1;
-                enemyText = enemy1;
-            }
-        }
-        private void makeWalls1()
-        {
-            blocks[0] = new Rectangle(50, 450, 50, 50);
-            blocks[1] = new Rectangle(100, 450, 50, 50);
-            blocks[2] = new Rectangle(150, 450, 50, 50);
-            blocks[3] = new Rectangle(200, 450, 50, 50);
-            blocks[4] = new Rectangle(250, 450, 50, 50);
-            blocks[5] = new Rectangle(300, 450, 50, 50);
-            blocks[6] = new Rectangle(350, 450, 50, 50);
-            blocks[7] = new Rectangle(400, 450, 50, 50);
-            blocks[8] = new Rectangle(450, 450, 50, 50);
-            blocks[9] = new Rectangle(500, 450, 50, 50);
         }
         private bool onWalls()
         {
@@ -587,22 +574,35 @@ namespace Game2
             }
             return false;
         }
-        private void updateWalls()
+        private void fall()
         {
-            kb = Keyboard.GetState();
-            if (onWalls() && kb.IsKeyDown(Keys.Space))
+            playerRect.Y += gravSpeed;
+        }
+        private void jump()
+        {
+            if (jumpHeight > 0)
             {
+                jumpHeight -= gravSpeed;
+                playerRect.Y -= gravSpeed;
                 isJumping = true;
-                jump();
             }
-            if (!onWalls() && isJumping == false)
+            else
             {
-                fall();
+                isJumping = false;
             }
-            if (!onWalls() && isJumping == true)
-            {
-                jump();
-            }
+        }
+        private void makeWalls1()
+        {
+            blocks[0] = new Rectangle(50, 450, 50, 50);
+            blocks[1] = new Rectangle(100, 450, 50, 50);
+            blocks[2] = new Rectangle(150, 450, 50, 50);
+            blocks[3] = new Rectangle(200, 450, 50, 50);
+            blocks[4] = new Rectangle(250, 450, 50, 50);
+            blocks[5] = new Rectangle(300, 450, 50, 50);
+            blocks[6] = new Rectangle(350, 450, 50, 50);
+            blocks[7] = new Rectangle(400, 450, 50, 50);
+            blocks[8] = new Rectangle(450, 450, 50, 50);
+            blocks[9] = new Rectangle(500, 450, 50, 50);
         }
         private void makeWalls2()
         {
