@@ -482,7 +482,6 @@ namespace Game2
         private bool onFloor()
         {
             Rectangle testfloor = new Rectangle(playerRect.X + 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
-
             
             if (testfloor.Intersects(platform))
             {
@@ -491,16 +490,7 @@ namespace Game2
                 playerRect.Y = platform.Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[0]))
-            {
-                isJumping = false;
-                jumpHeight = 100;
-                playerRect.Y = blocks[0].Y - playerRect.Height;
-                return true;
-            }
             return false;
-            
-         
         }
         private bool onWalls()
         {
