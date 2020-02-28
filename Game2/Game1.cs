@@ -456,13 +456,13 @@ namespace Game2
                 playerRect.Y = platform.Y - playerRect.Height;
                 return true;
             }
-            //if (testfloor.Intersects(platform))
-            //{
-            //    isJumping = false;
-            //    jumpHeight = maxHeight;
-            //    playerRect.Y = platform.Y - playerRect.Height;
-            //    return true;
-            //}
+            if (testfloor.Intersects(blocks[0-9]))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = blocks[0].Y - playerRect.Height;
+                return true;
+            }
             return false;
         }
         private void fall()
@@ -498,7 +498,7 @@ namespace Game2
         }
         private void makeWalls()
         {
-            blocks[0] = new Rectangle(0, 0, 50, 50);
+            blocks[0] = new Rectangle(500, 350, 50, 50);
             blocks[1] = new Rectangle(50, 50, 50, 50);
             blocks[2] = new Rectangle(150, 50, 50, 50);
             blocks[3] = new Rectangle(250, 50, 50, 50);
