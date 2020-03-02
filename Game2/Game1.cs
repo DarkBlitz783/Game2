@@ -240,6 +240,7 @@ namespace Game2
                 checkLives();
                 updatePlatform();
                 updateWalls();
+                wallCollisions();
             }
             if (state == 3)
             {
@@ -494,15 +495,15 @@ namespace Game2
         }
         private bool onWalls()
         {
-            Rectangle testfloor = new Rectangle(playerRect.X - 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
+            Rectangle testfloor = new Rectangle(playerRect.X - 10, playerRect.Y + 50, playerRect.Width - 10, 3);
 
-            
+
             if (testfloor.Intersects(blocks[0]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[0].Y - playerRect.Height;
-                playerRect.X = blocks[0].X - 50;
+                //playerRect.X = blocks[0].X - 50;
                 return true;
             }
             if (testfloor.Intersects(blocks[1]))
@@ -591,18 +592,28 @@ namespace Game2
         {
             blocks[0] = new Rectangle(600, 500, 50, 50);
             blocks[1] = new Rectangle(150, 450, 50, 50);
-            blocks[2] = new Rectangle(450, 375, 50, 50);
+            blocks[2] = new Rectangle(450, 425, 50, 50);
             blocks[3] = new Rectangle(750, 325, 50, 50);
             //blocks[4] = new Rectangle(250, 450, 50, 50);
             //blocks[5] = new Rectangle(300, 450, 50, 50);
             //blocks[6] = new Rectangle(350, 450, 50, 50);
             //blocks[7] = new Rectangle(400, 450, 50, 50);
             //blocks[8] = new Rectangle(450, 450, 50, 50);
-            //blocks[9] = new Rectangle(500, 450, 50, 50);
+            //blocks[9] = new Rectangle(500, 450, 50, 50);d
         }
         private void makeWalls2()
         {
 
+        }
+        private void wallCollisions()
+        {
+            Rectangle headFloor = new Rectangle(playerRect.X + 10, playerRect.Y , playerRect.Width - 10, 3);
+
+            if (headFloor.Intersects(blocks[0]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+            }
         }
     }
 }
