@@ -133,7 +133,7 @@ namespace Game2
             animateCount = 0;
 
             //enemy stuff 
-            chef1Rect = new Rectangle(25, 2000, 50, 75);
+            chef1Rect = new Rectangle(300, 450, 50, 75);
             animateChef1Count = 0;
             animateChef1Speed = 20;
             animateChef1NumPics = 3;
@@ -142,14 +142,14 @@ namespace Game2
             speed = 3;
             speedJ = 3;
             lives = 3;
-            state = 1;
+            state = 2;
             maxHeight = 100;
             jumpHeight = maxHeight;
             gravSpeed = 4;
             enemyspeed = 3;
 
             //enemy 2 stuff
-            enemyRect = new Rectangle(600, 200, 50, 75);
+            enemyRect = new Rectangle(600, 450, 50, 75);
             animateenemyCount = 0;
             animateenemySpeed = 20;
             animateenemyNumPics = 3;
@@ -158,7 +158,7 @@ namespace Game2
             floorRect = new Rectangle(000, 500, 1200, 350);
             platform = new Rectangle(000, 540, 1200, 350);
 
-            blocks = new Rectangle[10];
+            blocks = new Rectangle[18];
 
             //Hitboxes
             
@@ -266,6 +266,7 @@ namespace Game2
                 updatePlatform();
                 updateWalls();
                 makeWalls2();
+                wallCollisions();
             }
 
             base.Update(gameTime);
@@ -319,8 +320,15 @@ namespace Game2
                 spriteBatch.Draw(blockText, blocks[7], Color.White);
                 spriteBatch.Draw(blockText, blocks[8], Color.White);
                 spriteBatch.Draw(blockText, blocks[9], Color.White);
+                spriteBatch.Draw(blockText, blocks[10], Color.White);
+                spriteBatch.Draw(blockText, blocks[11], Color.White);
+                spriteBatch.Draw(blockText, blocks[12], Color.White);
+                spriteBatch.Draw(blockText, blocks[13], Color.White);
+                spriteBatch.Draw(blockText, blocks[14], Color.White);
+                spriteBatch.Draw(blockText, blocks[15], Color.White);
+                spriteBatch.Draw(blockText, blocks[16], Color.White);
+                spriteBatch.Draw(blockText, blocks[17], Color.White);
 
-                
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(enemyText, enemyRect, Color.White);
             }
@@ -443,13 +451,13 @@ namespace Game2
         private void chef1movement()
         {
             chef1Rect.X += speed;
-            if (chef1Rect.X > 700)
+            if (chef1Rect.X > 1050)
             {
                 speed *= -1;
                 chef1Text = chef1a;
 
             }
-            if (chef1Rect.X < 0)
+            if (chef1Rect.X < 300)
             {
                 speed *= -1;
                 chef1Text = chef1;
@@ -458,12 +466,12 @@ namespace Game2
         private void enemymovement()
         {
             enemyRect.X += enemyspeed;
-            if (enemyRect.X > 700)
+            if (enemyRect.X > 975)
             {
                 enemyspeed *= -1;
                 enemyText = enemy2;
             }
-            if (enemyRect.X < 0)
+            if (enemyRect.X < 200)
             {
                 enemyspeed *= -1;
                 enemyText = enemy1;
@@ -598,6 +606,63 @@ namespace Game2
                 playerRect.Y = blocks[9].Y - playerRect.Height;
                 return true;
             }
+            if (feetfloor.Intersects(blocks[10]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[10].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[11]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[11].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[12]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[12].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[13]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[13].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[14]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[14].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[15]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[15].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[16]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[16].Y - playerRect.Height;
+                return true;
+            }
+            if (feetfloor.Intersects(blocks[17]))
+            {
+                isJumping = false;
+                jumpHeight = maxHeight;
+                playerRect.Y = blocks[71].Y - playerRect.Height;
+                return true;
+            }
+         
             return false;
         }
         private void fall()
@@ -633,15 +698,24 @@ namespace Game2
         private void makeWalls2()
         {
             blocks[0] = new Rectangle(150, 500, 50, 50);
-            blocks[1] = new Rectangle(300, 450, 50, 50);
-            blocks[2] = new Rectangle(400, 400, 50, 50);
-            blocks[3] = new Rectangle(500, 300, 50, 50);
-            blocks[4] = new Rectangle(700, 300, 50, 50);
-            blocks[5] = new Rectangle(900, 300, 50, 50);
-            blocks[6] = new Rectangle(1100, 350, 50, 50);
-            blocks[7] = new Rectangle(1100, 400, 50, 50);
-            blocks[8] = new Rectangle(1100, 450, 50, 50);
-            blocks[9] = new Rectangle(1100, 500, 50, 50);
+            blocks[1] = new Rectangle(150, 450, 50, 50);
+            blocks[2] = new Rectangle(275, 350, 50, 50);
+            blocks[3] = new Rectangle(325, 350, 50, 50);
+            blocks[4] = new Rectangle(375, 350, 50, 50);
+            blocks[5] = new Rectangle(525, 300, 50, 50);
+            blocks[6] = new Rectangle(575, 300, 50, 50);
+            blocks[7] = new Rectangle(625, 300, 50, 50);
+            blocks[8] = new Rectangle(775, 350, 50, 50);
+            blocks[9] = new Rectangle(825, 350, 50, 50);
+            blocks[10] = new Rectangle(875, 350, 50, 50);
+            blocks[11] = new Rectangle(1025, 300, 50, 50);
+            blocks[12] = new Rectangle(1025, 350, 50, 50);
+            blocks[13] = new Rectangle(1025, 400, 50, 50);
+            blocks[14] = new Rectangle(1025, 450, 50, 50);
+            blocks[15] = new Rectangle(1025, 500, 50, 50);
+            blocks[16] = new Rectangle(575, 350, 50, 50);
+            blocks[17] = new Rectangle(575, 400, 50, 50);
+            
         }
         private void wallCollisions()
         {
@@ -659,46 +733,103 @@ namespace Game2
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[1].Left - 50;
             }
             if (BodyRect.Intersects(blocks[2]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[2].Left - 50;
             }
             if (BodyRect.Intersects(blocks[3]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[3].Left - 50;
             }
             if (BodyRect.Intersects(blocks[4]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[4].Left - 50;
             }
             if (BodyRect.Intersects(blocks[5]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[5].Left - 50;
             }
             if (BodyRect.Intersects(blocks[6]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[6].Left - 50;
             }
             if (BodyRect.Intersects(blocks[7]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[7].Left - 50;
             }
             if (BodyRect.Intersects(blocks[8]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[8].Left - 50;
             }
             if (BodyRect.Intersects(blocks[9]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[9].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[10]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[10].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[11]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[11].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[12]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[12].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[13]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[13].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[14]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[14].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[15]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[15].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[16]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[16].Left - 50;
+            }
+            if (BodyRect.Intersects(blocks[17]))
+            {
+                isJumping = false;
+                jumpHeight = 0;
+                playerRect.X = blocks[17].Left - 50;
             }
         }
     }
