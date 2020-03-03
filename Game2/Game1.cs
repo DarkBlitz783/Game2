@@ -93,6 +93,12 @@ namespace Game2
         KeyboardState kb;
         KeyboardState oldKB;
 
+        //hitboxes
+        Texture2D BodyHit;
+        Rectangle BodyRect;
+        //Rectangle headFloor;
+        //Rectangle feetfloor;
+
         SpriteFont test;
         public Game1()
         {
@@ -154,6 +160,11 @@ namespace Game2
 
             blocks = new Rectangle[10];
 
+            //Hitboxes
+            
+            //rightSide = new Rectangle(playerRect.X + 50, playerRect.Y, 3, playerRect.Height);
+            //headFloor = new Rectangle(playerRect.X, playerRect.Y, playerRect.Width, 3);
+
             base.Initialize();
         }
 
@@ -174,6 +185,7 @@ namespace Game2
             loseText = Content.Load<Texture2D>("house-house");
 
             //player stuff
+            
             player1 = Content.Load<Texture2D>("pizzasteve1");
             player2 = Content.Load<Texture2D>("pizzasteve2");
             player3 = Content.Load<Texture2D>("pizzasteve3");
@@ -186,6 +198,8 @@ namespace Game2
             fplayer5 = Content.Load<Texture2D>("fpizzasteve5");
 
             playerText = player1;
+            //hitbox
+            BodyHit = Content.Load<Texture2D>("block");
 
             //enemy stuff 
             chef1 = Content.Load<Texture2D>("chef1");
@@ -272,6 +286,7 @@ namespace Game2
             if (state == 2)
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
+                
                 //walls
                 spriteBatch.Draw(blockText, blocks[0], Color.White);
                 spriteBatch.Draw(blockText, blocks[1], Color.White);
@@ -286,6 +301,7 @@ namespace Game2
 
                 //end walls
                 spriteBatch.Draw(playerText, playerRect, Color.White);
+                spriteBatch.Draw(BodyHit, BodyRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
             }
             if (state == 3)
@@ -495,10 +511,9 @@ namespace Game2
         }
         private bool onWalls()
         {
-            Rectangle testfloor = new Rectangle(playerRect.X - 10, playerRect.Y + 50, playerRect.Width - 10, 3);
+            Rectangle feetfloor = new Rectangle(playerRect.X, playerRect.Y + 50, playerRect.Width - 10, 3);
 
-
-            if (testfloor.Intersects(blocks[0]))
+            if (feetfloor.Intersects(blocks[0]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
@@ -506,63 +521,63 @@ namespace Game2
                 //playerRect.X = blocks[0].X - 50;
                 return true;
             }
-            if (testfloor.Intersects(blocks[1]))
+            if (feetfloor.Intersects(blocks[1]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[1].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[2]))
+            if (feetfloor.Intersects(blocks[2]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[2].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[3]))
+            if (feetfloor.Intersects(blocks[3]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[3].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[4]))
+            if (feetfloor.Intersects(blocks[4]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[4].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[5]))
+            if (feetfloor.Intersects(blocks[5]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[5].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[6]))
+            if (feetfloor.Intersects(blocks[6]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[6].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[7]))
+            if (feetfloor.Intersects(blocks[7]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[7].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[8]))
+            if (feetfloor.Intersects(blocks[8]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
                 playerRect.Y = blocks[8].Y - playerRect.Height;
                 return true;
             }
-            if (testfloor.Intersects(blocks[9]))
+            if (feetfloor.Intersects(blocks[9]))
             {
                 isJumping = false;
                 jumpHeight = maxHeight;
@@ -607,12 +622,19 @@ namespace Game2
         }
         private void wallCollisions()
         {
-            Rectangle headFloor = new Rectangle(playerRect.X + 10, playerRect.Y , playerRect.Width - 10, 3);
+            //Rectangle headFloor = new Rectangle(playerRect.X, playerRect.Y , playerRect.Width, 3);
+            BodyRect = new Rectangle(playerRect.X, playerRect.Y, playerRect.Width, playerRect.Height - 5);
 
-            if (headFloor.Intersects(blocks[0]))
+            if (BodyRect.Intersects(blocks[0]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+            }
+
+            //Rectangle rightSide = new Rectangle(playerRect.X + 50, playerRect.Y, 3, playerRect.Height);
+            if (BodyRect.Intersects(blocks[0]))
+            {
+                playerRect.X = blocks[0].X - 50;
             }
         }
     }
