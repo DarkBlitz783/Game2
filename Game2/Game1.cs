@@ -96,8 +96,8 @@ namespace Game2
         //hitboxes
         Texture2D BodyHit;
         Rectangle BodyRect;
-        //Rectangle headFloor;
-        //Rectangle feetfloor;
+        Texture2D feetRect;
+        Rectangle feetfloor;
 
         SpriteFont test;
         public Game1()
@@ -163,7 +163,7 @@ namespace Game2
             //Hitboxes
             
             //rightSide = new Rectangle(playerRect.X + 50, playerRect.Y, 3, playerRect.Height);
-            //headFloor = new Rectangle(playerRect.X, playerRect.Y, playerRect.Width, 3);
+            //BodyRect = new Rectangle(playerRect.X, playerRect.Y, playerRect.Width, 3);
 
             base.Initialize();
         }
@@ -200,6 +200,7 @@ namespace Game2
             playerText = player1;
             //hitbox
             BodyHit = Content.Load<Texture2D>("block");
+            feetRect = Content.Load<Texture2D>("block");
 
             //enemy stuff 
             chef1 = Content.Load<Texture2D>("chef1");
@@ -301,7 +302,7 @@ namespace Game2
 
                 //end walls
                 spriteBatch.Draw(playerText, playerRect, Color.White);
-                spriteBatch.Draw(BodyHit, BodyRect, Color.White);
+                spriteBatch.Draw(feetRect, feetfloor, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
             }
             if (state == 3)
@@ -524,7 +525,7 @@ namespace Game2
         }
         private bool onWalls()
         {
-            Rectangle feetfloor = new Rectangle(playerRect.X, playerRect.Y + 50, playerRect.Width - 10, 3);
+            feetfloor = new Rectangle(playerRect.X, playerRect.Y + 50, playerRect.Width - 10, 3);
 
             if (feetfloor.Intersects(blocks[0]))
             {
@@ -644,55 +645,56 @@ namespace Game2
         }
         private void wallCollisions()
         {
-            //Rectangle headFloor = new Rectangle(playerRect.X, playerRect.Y , playerRect.Width, 3);
+            //Rectangle BodyRect = new Rectangle(playerRect.X, playerRect.Y , playerRect.Width, 3);
             BodyRect = new Rectangle(playerRect.X, playerRect.Y, playerRect.Width, playerRect.Height - 5);
 
             if (BodyRect.Intersects(blocks[0]))
             {
                 isJumping = false;
                 jumpHeight = 0;
+                playerRect.X = blocks[0].X - 50;
             }
-            if (headFloor.Intersects(blocks[1]))
+            if (BodyRect.Intersects(blocks[1]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[2]))
+            if (BodyRect.Intersects(blocks[2]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[3]))
+            if (BodyRect.Intersects(blocks[3]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[4]))
+            if (BodyRect.Intersects(blocks[4]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[5]))
+            if (BodyRect.Intersects(blocks[5]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[6]))
+            if (BodyRect.Intersects(blocks[6]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[7]))
+            if (BodyRect.Intersects(blocks[7]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[8]))
+            if (BodyRect.Intersects(blocks[8]))
             {
                 isJumping = false;
                 jumpHeight = 0;
             }
-            if (headFloor.Intersects(blocks[9]))
+            if (BodyRect.Intersects(blocks[9]))
             {
                 isJumping = false;
                 jumpHeight = 0;
