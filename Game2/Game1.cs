@@ -652,7 +652,8 @@ namespace Game2
             {
                 isJumping = false;
                 jumpHeight = 0;
-                playerRect.X = blocks[0].X - 50;
+                playerRect.X = blocks[0].Left - 50;
+
             }
             if (BodyRect.Intersects(blocks[1]))
             {
