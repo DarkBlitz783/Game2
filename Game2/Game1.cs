@@ -125,7 +125,7 @@ namespace Game2
             loseRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             
             //player stuff 
-            playerRect = new Rectangle(0, 440, 50, 50);
+            playerRect = new Rectangle(0, 500, 50, 50);
 
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
@@ -431,13 +431,22 @@ namespace Game2
         {
             if (playerRect.Intersects(chef1Rect))
             {
-                playerRect.Location = new Point(0, 0);
+                playerRect.Location = new Point(0, 500);
                 lives -= 1;
             }
-            if (playerRect.X > 1200)
+            if (playerRect.Intersects(enemyRect))
             {
-                playerRect.Location = new Point(500, 500);
+                playerRect.Location = new Point(0, 500);
+                lives -= 1;
+            }
+            if (playerRect.X > 1200 && state == 2)
+            {
+                playerRect.Location = new Point(0, 500);
                 state = 3;
+            }
+            if (playerRect.X > 1200 && state == 3)
+            {
+                state = 4;
             }
         }
         private void chef1movement()
