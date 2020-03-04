@@ -142,7 +142,7 @@ namespace Game2
             speed = 3;
             speedJ = 3;
             lives = 3;
-            state = 2;
+            state = 1;
             maxHeight = 100;
             jumpHeight = maxHeight;
             gravSpeed = 4;
@@ -259,14 +259,15 @@ namespace Game2
             }
             if (state == 3)
             {
+                makeWalls2();
                 checkKeys();
                 enemymovement();
                 checkCollisions();
                 checkLives();
                 updatePlatform();
                 updateWalls();
-                makeWalls2();
                 wallCollisions();
+                
             }
 
             base.Update(gameTime);
@@ -439,7 +440,7 @@ namespace Game2
         {
             if (playerRect.Intersects(chef1Rect))
             {
-                playerRect.Location = new Point(0, 0);
+                playerRect.Location = new Point(0, 425);
                 lives -= 1;
             }
             if (playerRect.X > 1200)
