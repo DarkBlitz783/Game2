@@ -543,7 +543,7 @@ namespace Game2
         }
         private bool onWalls()
         {
-            feetfloor = new Rectangle(playerRect.X, playerRect.Y + 50, playerRect.Width - 10, 3);
+            Rectangle feetfloor = new Rectangle(playerRect.X, playerRect.Y + 50, playerRect.Width - 10, 3);
 
             if (feetfloor.Intersects(blocks[0]))
             {
